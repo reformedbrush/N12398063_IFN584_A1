@@ -1,4 +1,5 @@
 using System;
+using System.Data;
 
 public class Board
 {
@@ -63,7 +64,7 @@ public class Board
         int boardCol = col-1;
 
         int count = 1;
-
+    //horizontal check
         for(int c=boardCol - 1; c>=0; c--)
         {
             if (board[boardRow, c] == player)
@@ -88,7 +89,117 @@ public class Board
             }
         }
 
-        return count >=5;
+        if (count >= 5)
+        {
+            return true;
+        }
+
+        count=1;
+
+    //vertical Check 
+
+    for(int r = boardRow - 1; r>=0; r--)
+        {
+            if(board[r, boardCol]==player){
+                count++;
+            }
+            else
+            {
+                break;
+            }
+        }
+        for(int r = boardRow+1; r < 10; r++)
+        {
+            if(board[r, boardCol] == player)
+            {
+                count++;
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        if (count >= 5)
+        {
+            return true;
+        }
+
+        count=1;
+
+    //diagonal check \
+
+         for(int r= boardRow -1, c=boardCol - 1;
+            r>=0 && c>=0;
+            r--, c--)
+        {
+            if (board[r, c] == player)
+            {
+                count++;
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        for(int r=boardRow+1, c=boardCol+1; r<10 && c < 10;r++,c++)
+        {
+            if (board[r, c] == player)
+            {
+                count++;
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        if (count >= 5)
+        {
+            return true;
+        }
+    
+    //diagonal check #2 /
+
+        count=1;
+        for (int r = boardRow + 1, c = boardCol - 1;
+            r < 10 && c >= 0;
+            r++, c--)
+        {
+            if (board[r, c] == player)
+            {
+                count++;
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        for (int r = boardRow - 1, c = boardCol + 1;
+            r >= 0 && c < 10;
+            r--, c++)
+        {
+            if (board[r, c] == player)
+            {
+                count++;
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        if (count >= 5)
+        {
+            return true;
+        }
+
+        return false;
+        
+
+
     }
 
     public bool PlaceStone(int row, int col, string stone)
