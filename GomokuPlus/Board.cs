@@ -1,6 +1,4 @@
 using System;
-using System.Runtime.InteropServices;
-using System.Threading.Tasks.Dataflow;
 
 public class Board
 {
@@ -57,6 +55,22 @@ public class Board
             Console.WriteLine();
             
         }
+    }
+
+    public bool PlaceStone(int row, int col, string stone)
+    {
+        if (row<1 || row>10 || col <1 || col > 10)
+        {
+            return false;
+        }
+
+        if(board[row -1, col - 1]!=" ")
+        {
+            return false;
+        }
+        board[row -1, col-1]=stone;
+
+        return true;
     }
     
 }
