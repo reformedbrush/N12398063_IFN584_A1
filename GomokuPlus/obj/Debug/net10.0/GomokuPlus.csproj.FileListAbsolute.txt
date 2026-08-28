@@ -1,0 +1,14 @@
+/Users/akshai/Developer/N12398063_IFN584_A1/GomokuPlus/bin/Debug/net10.0/GomokuPlus
+/Users/akshai/Developer/N12398063_IFN584_A1/GomokuPlus/bin/Debug/net10.0/GomokuPlus.deps.json
+/Users/akshai/Developer/N12398063_IFN584_A1/GomokuPlus/bin/Debug/net10.0/GomokuPlus.runtimeconfig.json
+/Users/akshai/Developer/N12398063_IFN584_A1/GomokuPlus/bin/Debug/net10.0/GomokuPlus.dll
+/Users/akshai/Developer/N12398063_IFN584_A1/GomokuPlus/bin/Debug/net10.0/GomokuPlus.pdb
+/Users/akshai/Developer/N12398063_IFN584_A1/GomokuPlus/obj/Debug/net10.0/GomokuPlus.GeneratedMSBuildEditorConfig.editorconfig
+/Users/akshai/Developer/N12398063_IFN584_A1/GomokuPlus/obj/Debug/net10.0/GomokuPlus.AssemblyInfoInputs.cache
+/Users/akshai/Developer/N12398063_IFN584_A1/GomokuPlus/obj/Debug/net10.0/GomokuPlus.AssemblyInfo.cs
+/Users/akshai/Developer/N12398063_IFN584_A1/GomokuPlus/obj/Debug/net10.0/GomokuPlus.csproj.CoreCompileInputs.cache
+/Users/akshai/Developer/N12398063_IFN584_A1/GomokuPlus/obj/Debug/net10.0/GomokuPlus.dll
+/Users/akshai/Developer/N12398063_IFN584_A1/GomokuPlus/obj/Debug/net10.0/refint/GomokuPlus.dll
+/Users/akshai/Developer/N12398063_IFN584_A1/GomokuPlus/obj/Debug/net10.0/GomokuPlus.pdb
+/Users/akshai/Developer/N12398063_IFN584_A1/GomokuPlus/obj/Debug/net10.0/GomokuPlus.genruntimeconfig.cache
+/Users/akshai/Developer/N12398063_IFN584_A1/GomokuPlus/obj/Debug/net10.0/ref/GomokuPlus.dll
