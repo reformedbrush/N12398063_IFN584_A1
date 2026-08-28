@@ -1,24 +1,43 @@
 ﻿Board gameBoard= new Board();
 
+String currentPlayer = "X";
+
 //gameBoard.PlaceStone(5, 5, "X");
 
 while (true)
 {
-    Console.Write("Enter Row: ");
-int row= int.Parse(Console.ReadLine());
 
-Console.Write("Enter Column: ");
-int col= int.Parse(Console.ReadLine());
+    Console.WriteLine($"Player {currentPlayer}'s turn");
+    Console.Write("Enter Row (or Q to Quit): ");
+    string input = Console.ReadLine();
 
-bool placed = gameBoard.PlaceStone(row, col, "x");
+    if(input == "Q" || input == "q")
+    {
+        break;
+    }
+    
+    int row=int.Parse(input);
 
-if (placed)
-{
-    Console.WriteLine("Stone Placed");
-}
-else
-{
-    Console.WriteLine("Invalid Move");
-}
+    Console.Write("Enter Column: ");
+    int col= int.Parse(Console.ReadLine());
+
+    bool placed = gameBoard.PlaceStone(row, col, currentPlayer);
+
+    if (placed)
+    {
+        Console.WriteLine("Stone Placed");
+            if (currentPlayer == "X")
+            {
+                currentPlayer="0";
+            }
+            else
+            {
+                currentPlayer="X";
+            }
+    }
+    else
+    {
+     Console.WriteLine("Invalid Move");
+    }
 gameBoard.Display();
 }
