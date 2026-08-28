@@ -26,6 +26,12 @@ while (true)
     if (placed)
     {
         Console.WriteLine("Stone Placed");
+        if (gameBoard.CheckWin(row, col, currentPlayer))
+        {
+            gameBoard.Display();
+            Console.WriteLine($"Player {currentPlayer} WINS !");
+            break;
+        }
             if (currentPlayer == "X")
             {
                 currentPlayer="0";

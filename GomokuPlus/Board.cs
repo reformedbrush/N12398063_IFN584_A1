@@ -56,6 +56,40 @@ public class Board
             
         }
     }
+    
+    public bool CheckWin(int row, int col, string player)
+    {
+        int boardRow = row-1;
+        int boardCol = col-1;
+
+        int count = 1;
+
+        for(int c=boardCol - 1; c>=0; c--)
+        {
+            if (board[boardRow, c] == player)
+            {
+                count++;
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        for (int c = boardCol + 1; c < 10; c++)
+        {
+            if(board[boardRow, c] == player)
+            {
+                count++;
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        return count >=5;
+    }
 
     public bool PlaceStone(int row, int col, string stone)
     {
