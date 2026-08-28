@@ -12,3 +12,4 @@
 /Users/akshai/Developer/N12398063_IFN584_A1/GomokuPlus/obj/Debug/net10.0/GomokuPlus.pdb
 /Users/akshai/Developer/N12398063_IFN584_A1/GomokuPlus/obj/Debug/net10.0/GomokuPlus.genruntimeconfig.cache
 /Users/akshai/Developer/N12398063_IFN584_A1/GomokuPlus/obj/Debug/net10.0/ref/GomokuPlus.dll
+/Users/akshai/Developer/N12398063_IFN584_A1/GomokuPlus/obj/Debug/net10.0/GomokuPlus.sourcelink.json
