@@ -1,8 +1,22 @@
 ﻿using System;
+using System.Net;
+
+Console.WriteLine("1. Human vs Human");
+Console.WriteLine("2. Human vs Computer");
+Console.WriteLine("Choose game mode: ");
+string gameMode=Console.ReadLine();
+
+if(gameMode!= "1" && gameMode != "2")
+{
+    Console.WriteLine("Invalid game mode.");
+    return;
+}
 
 Board gameBoard = new Board();
 
 string currentPlayer = "X";
+
+ComputerPlayer computer= new ComputerPlayer();
 
 int playerXHeavyStones=2;
 int playerOHeavyStones=2;
@@ -15,10 +29,22 @@ while (true)
     Console.WriteLine();
     Console.WriteLine($"Player {currentPlayer}'s turn");
 
-    Console.Write("Enter Command (Q to quit): ");
+    Console.Write("Enter Command (Q to quit, HELP for Instructions): ");
     string command = Console.ReadLine();
 
+
+    if(command == "HELP" || command == "help")
+    {
+        Console.WriteLine("O = Normal Stone");
+        Console.WriteLine("H = Heavy Stone");
+        Console.WriteLine("E = Eraser");
+        Console.WriteLine("Q = Quit");
+        Console.WriteLine("Commands use the format O[row]:[column]");
+        Console.WriteLine("Example: O5:5");
+        continue;
+    }
     string stoneChoice = command.Substring(0,1);
+
 
     if (stoneChoice == "Q" || stoneChoice == "q")
     {
@@ -38,6 +64,7 @@ while (true)
     if (colon == -1)
     {
         Console.WriteLine("Invalid Command");
+        continue;
     }
 
     try{
@@ -86,7 +113,7 @@ while (true)
     {
         if(currentPlayer=="X" && playerXEraser>0)
         {
-            placed=gameBoard.EraseStone(row,col);
+            placed=gameBoard.EraseStone(row,col,currentPlayer);
 
             if (placed)
             {
@@ -96,7 +123,7 @@ while (true)
 
         else if(currentPlayer=="O" && playerOEraser > 0)
         {
-            placed=gameBoard.EraseStone(row,col);
+            placed=gameBoard.EraseStone(row,col,currentPlayer);
 
             if (placed)
             {
@@ -133,9 +160,37 @@ while (true)
             }
         }
 
-        if (currentPlayer == "X")
+      if (currentPlayer == "X")
         {
             currentPlayer = "O";
+
+            if (gameMode == "2")
+            {
+                int[] computerMove = computer.MakeMove(gameBoard);
+
+                if (computerMove[0] == -1)
+                {
+                    Console.WriteLine("The board is full.");
+                    break;
+                }
+
+                Console.WriteLine(
+                    $"Computer placed a stone at {computerMove[0]}:{computerMove[1]}"
+                );
+
+                gameBoard.Display();
+
+                if (gameBoard.CheckWin(
+                    computerMove[0],
+                    computerMove[1],
+                    "O"))
+                {
+                    Console.WriteLine("Computer WINS!");
+                    break;
+                }
+
+                currentPlayer = "X";
+            }
         }
         else
         {

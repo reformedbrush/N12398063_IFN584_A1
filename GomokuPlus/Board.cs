@@ -259,7 +259,7 @@ public class Board
         return true;
     }
 
-    public bool EraseStone(int row,int col)
+    public bool EraseStone(int row,int col, string player)
     {
         int boardRow = row-1;
         int boardCol = col-1;
@@ -269,13 +269,31 @@ public class Board
             return false;
         }
 
-        if(board[boardRow,boardCol]!="X"&& board[boardRow, boardCol] != "O")
+       if(player =="X" && board[boardRow, boardCol] != "O")
+        {
+            return false;
+        }
+
+        if(player == "O" && board[boardRow,boardCol]!= "X")
         {
             return false;
         }
 
         board[boardRow,boardCol]=" ";
         return true;
+    }
+
+    public bool IsEmpty(int row, int col)
+    {
+       int boardRow = row - 1;
+       int boardCol = col - 1;
+
+       if(boardRow<0 || boardRow >=10 || boardCol<0 || boardCol>=10)
+        {
+            return false;
+        } 
+
+        return board[boardRow, boardCol] == " ";
     }
     
 }
