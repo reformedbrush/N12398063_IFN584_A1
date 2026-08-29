@@ -217,5 +217,50 @@ public class Board
 
         return true;
     }
+
+    public bool PlaceHeavyStone(int row,int col, string player)
+    {
+        int boardRow = row - 1;
+        int boardCol = col - 1;
+
+       if(boardRow<0 || boardRow>=10 || boardCol<0 || boardCol >= 10)
+        {
+            return false;
+        }
+
+        if(board[boardRow,boardCol]!= " ")
+        {
+            return false;
+        }
+        if (player == "X")
+        {
+            board[boardRow,boardCol]="@";
+        }
+        else
+        {
+            board[boardRow,boardCol]="#";
+        }
+
+        return true;
+    }
+
+    public bool EraseStone(int row,int col)
+    {
+        int boardRow = row-1;
+        int boardCol = col-1;
+
+        if(boardRow<0 || boardRow>=10 || boardCol<0 || boardCol >= 10)
+        {
+            return false;
+        }
+
+        if(board[boardRow,boardCol]!="X"&& board[boardRow, boardCol] != "O")
+        {
+            return false;
+        }
+
+        board[boardRow,boardCol]=" ";
+        return true;
+    }
     
 }
