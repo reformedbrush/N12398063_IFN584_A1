@@ -25,7 +25,7 @@ while (true)
         break;
     }
 
-    if(stoneChoice != "o"&& stoneChoice !="H" && stoneChoice != "E")
+    if(stoneChoice != "O" && stoneChoice !="H" && stoneChoice != "E")
     {
         Console.WriteLine("Invalid Command.");
         continue;
@@ -34,8 +34,13 @@ while (true)
     int row;
     int col;
 
+    int colon = command.IndexOf(':');
+    if (colon == -1)
+    {
+        Console.WriteLine("Invalid Command");
+    }
+
     try{
-        int colon = command.IndexOf(':');
 
          row = int.Parse(command.Substring(1,colon-1));
          col = int.Parse(command.Substring(colon+1));
@@ -112,13 +117,20 @@ while (true)
 
     if (placed)
     {
-        Console.WriteLine("Stone Placed");
-
-        if (gameBoard.CheckWin(row, col, currentPlayer))
+        if (stoneChoice == "E")
         {
-            gameBoard.Display();
-            Console.WriteLine($"Player {currentPlayer} WINS!");
-            break;
+            Console.WriteLine("Stone Erased.");
+        }
+        else
+        {
+            Console.WriteLine("Stone Placed");
+
+            if (gameBoard.CheckWin(row, col, currentPlayer))
+            {
+                gameBoard.Display();
+                Console.WriteLine($"Player {currentPlayer} WINS!");
+                break;
+            }
         }
 
         if (currentPlayer == "X")
