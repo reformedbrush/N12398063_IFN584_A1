@@ -1,5 +1,7 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
+using System.IO;
 
 public class Board
 {
@@ -295,5 +297,69 @@ public class Board
 
         return board[boardRow, boardCol] == " ";
     }
+
+    public void SaveGame(
+        string filename,
+        string currentPlayer,
+        string gameMode,
+        int turnCount,
+        int playerXHeavyStones,
+        int playerOHeavyStones,
+        int playerXEraser,
+        int playerOEraser)
+{
+    using (StreamWriter writer = new StreamWriter(filename))
+    {
+        writer.WriteLine(currentPlayer);
+        writer.WriteLine(gameMode);
+        writer.WriteLine(turnCount);
+        writer.WriteLine(playerXHeavyStones);
+        writer.WriteLine(playerOHeavyStones);
+        writer.WriteLine(playerXEraser);
+        writer.WriteLine(playerOEraser);
+
+        for (int row = 0; row < 10; row++)
+        {
+            for (int col = 0; col < 10; col++)
+            {
+                writer.Write(board[row, col]);
+            }
+
+            writer.WriteLine();
+        }
+    }
+}
+
+    public void LoadGame(
+        string filename,
+        out string currentPlayer,
+        out string gameMode,
+        out int turnCount,
+        out int playerXHeavyStones,
+        out int playerOHeavyStones,
+        out int playerXEraser,
+        out int playerOEraser)
+{
+    using (StreamReader reader = new StreamReader(filename))
+    {
+        currentPlayer = reader.ReadLine();
+        gameMode = reader.ReadLine();
+        turnCount = int.Parse(reader.ReadLine());
+        playerXHeavyStones = int.Parse(reader.ReadLine());
+        playerOHeavyStones = int.Parse(reader.ReadLine());
+        playerXEraser = int.Parse(reader.ReadLine());
+        playerOEraser = int.Parse(reader.ReadLine());
+
+        for (int row = 0; row < 10; row++)
+        {
+            string line = reader.ReadLine();
+
+            for (int col = 0; col < 10; col++)
+            {
+                board[row, col] = line[col].ToString();
+            }
+        }
+    }
+}
     
 }

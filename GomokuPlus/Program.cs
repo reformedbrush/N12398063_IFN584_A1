@@ -15,7 +15,7 @@ if(gameMode!= "1" && gameMode != "2")
 Board gameBoard = new Board();
 
 string currentPlayer = "X";
-
+int turnCount =0;
 ComputerPlayer computer= new ComputerPlayer();
 
 int playerXHeavyStones=2;
@@ -43,6 +43,34 @@ while (true)
         Console.WriteLine("Example: O5:5");
         continue;
     }
+
+    if(command =="S" || command == "s")
+    {
+        gameBoard.SaveGame("savegame.txt",currentPlayer,gameMode,turnCount,
+        playerXHeavyStones,playerOHeavyStones,playerXEraser,playerOEraser);
+
+        Console.WriteLine("GameSaved.");
+        continue;
+    }
+
+    if(command =="L" || command == "l")
+    {
+        try
+        {
+            gameBoard.LoadGame("savegame.txt",out currentPlayer,out gameMode,out turnCount,
+            out playerXHeavyStones,out playerOHeavyStones,out playerXEraser,out playerOEraser);
+
+            Console.WriteLine("Game Loaded.");
+            gameBoard.Display();
+        }
+
+        catch
+        {
+            Console.WriteLine("Unable to load game.");
+        }
+        continue;
+    }
+
     string stoneChoice = command.Substring(0,1);
 
 
@@ -144,6 +172,7 @@ while (true)
 
     if (placed)
     {
+        turnCount++;
         if (stoneChoice == "E")
         {
             Console.WriteLine("Stone Erased.");
