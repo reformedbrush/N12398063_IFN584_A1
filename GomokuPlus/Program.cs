@@ -1,6 +1,17 @@
 ﻿using System;
 using System.Net;
 
+string[] arguments=Environment.GetCommandLineArgs();
+
+bool testingMode=arguments.Length>1;
+string[] testCommands = new string[0];
+int testIndex = 0;
+
+if (testingMode)
+{
+    testCommands = arguments[1].Split(',');
+}
+
 Console.WriteLine("1. Human vs Human");
 Console.WriteLine("2. Human vs Computer");
 Console.WriteLine("Choose game mode: ");
@@ -24,16 +35,31 @@ int playerOHeavyStones=2;
 int playerXEraser = 2;
 int playerOEraser = 2;
 
+
 while (true)
 {
     Console.WriteLine();
     Console.WriteLine($"Player {currentPlayer}'s turn");
 
-    Console.Write("Enter Command (Q to quit, HELP for Instructions): ");
-    string command = Console.ReadLine();
+    string command;
 
+    if (testingMode)
+    {
+        if (testIndex >= testCommands.Length)
+        {
+            break;
+        }
 
-    if(command == "HELP" || command == "help")
+        command = testCommands[testIndex];
+        testIndex++;
+    }
+    else
+    {
+        Console.Write("Enter Command (Q to quit, HELP for Instructions): ");
+        command = Console.ReadLine();
+    }
+
+    if (command == "HELP" || command == "help")
     {
         Console.WriteLine("O = Normal Stone");
         Console.WriteLine("H = Heavy Stone");
