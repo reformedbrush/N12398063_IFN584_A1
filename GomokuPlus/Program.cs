@@ -15,30 +15,44 @@ while (true)
     Console.WriteLine();
     Console.WriteLine($"Player {currentPlayer}'s turn");
 
-    Console.WriteLine("1. Normal Stone");
-    Console.WriteLine("2. Heavy Stone");
-    Console.WriteLine("3. Eraser");
-    Console.Write("Choose stone type (Q to quit): ");
-    string stoneChoice = Console.ReadLine();
+    Console.Write("Enter Command (Q to quit): ");
+    string command = Console.ReadLine();
+
+    string stoneChoice = command.Substring(0,1);
 
     if (stoneChoice == "Q" || stoneChoice == "q")
     {
         break;
     }
 
-    Console.Write("Enter Row: ");
-    int row = int.Parse(Console.ReadLine());
+    if(stoneChoice != "o"&& stoneChoice !="H" && stoneChoice != "E")
+    {
+        Console.WriteLine("Invalid Command.");
+        continue;
+    }
 
-    Console.Write("Enter Column: ");
-    int col = int.Parse(Console.ReadLine());
+    int row;
+    int col;
+
+    try{
+        int colon = command.IndexOf(':');
+
+         row = int.Parse(command.Substring(1,colon-1));
+         col = int.Parse(command.Substring(colon+1));
+    }
+    catch
+    {
+        Console.WriteLine("Invalid Command");
+        continue;
+    }
 
     bool placed = false;
 
-    if (stoneChoice == "1")
+    if (stoneChoice == "O")
     {
         placed = gameBoard.PlaceStone(row, col, currentPlayer);
     }
-    else if (stoneChoice == "2")
+    else if (stoneChoice == "H")
     {
        if(currentPlayer=="X" && playerXHeavyStones > 0)
         {
@@ -63,7 +77,7 @@ while (true)
         }
     }
     
-    else if (stoneChoice == "3")
+    else if (stoneChoice == "E")
     {
         if(currentPlayer=="X" && playerXEraser>0)
         {
